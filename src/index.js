@@ -1,29 +1,26 @@
-import unity from './Unity.vue'
+import unity from './Unity.vue';
 
-const install = Vue => {
-  Vue.component('unity', unity)
-}
+var install = function (Vue) {
+  Vue.component('unity', unity);
+};
 
-unity.install = install
+unity.install = install;
 
-let instance = unity.data().gameInstance
+var instance = unity.data().gameInstance;
 
-const message = (gameObject, method, param) => {
+var message = function (gameObject, method, param) {
   if (param === null) {
-    param = ''
+    param = '';
   }
   if (UnityInstance !== null) {
-    instance.SendMessage (
-      gameObject,
-      method,
-      param)
+    instance.SendMessage(gameObject, method, param);
   } else {
-    console.warn('vue-unity-webgl: you\'ve sent a message to the Unity content, but it wasn\t instantiated yet.')
+    console.warn("vue-unity-webgl: you've sent a message to the Unity content, but it wasn\t instantiated yet.");
   }
-}
+};
 
-export const Unity = unity
-export const Message = message
-export const Instance = instance
+export var Unity = unity;
+export var Message = message;
+export var Instance = instance;
 
-export default Unity
+export default Unity;
